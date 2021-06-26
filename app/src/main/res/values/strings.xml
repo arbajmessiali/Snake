@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Snake Reloaded</string>
+    <string name="description">Food for the snake</string>
+    <string name="trophy">Highest score for the game</string>
+</resources>
