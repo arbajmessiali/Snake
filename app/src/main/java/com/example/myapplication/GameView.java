@@ -32,10 +32,6 @@ public class GameView extends View {
     public static boolean isPlaying = false;
     public static int score = 0, bestScore = 0;
     private Context context;
-    private int soundEat, soundDie;
-    private float volume;
-    private boolean loadedsound;
-    private SoundPool soundPool;
     private Handler handler;
     private Runnable r;
     private Prey prey;
@@ -75,25 +71,6 @@ public class GameView extends View {
                 invalidate();
             }
         };
-        if(Build.VERSION.SDK_INT>=21){
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_GAME)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
-            SoundPool.Builder builder = new SoundPool.Builder();
-            builder.setAudioAttributes(audioAttributes).setMaxStreams(5);
-            this.soundPool = builder.build();
-        }else{
-            soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
-        }
-        this.soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-            @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                loadedsound = true;
-            }
-        });
-        soundEat = this.soundPool.load(context, R.raw.eat, 1);
-        soundDie = this.soundPool.load(context, R.raw.die, 1);
     }
 
 
@@ -169,9 +146,6 @@ public class GameView extends View {
         snake.drawSnake(canvas);
         prey.draw(canvas);
         if(snake.getArrPartSnake().get(0).getrBody().intersect(prey.getR())){
-            if(loadedsound){
-                int streamId = this.soundPool.play(this.soundEat, (float)0.5, (float)0.5, 1, 0, 1f);
-            }
             prey.reset(arrGrass.get(randomPrey()[0]).getX(), arrGrass.get(randomPrey()[1]).getY());
             snake.addPart();
             score++;
@@ -193,9 +167,6 @@ public class GameView extends View {
         MainActivity.dialogScore.show();
         MainActivity.txt_dialog_best_score.setText(bestScore+"");
         MainActivity.txt_dialog_score.setText(score+"");
-        if(loadedsound){
-            int streamId = this.soundPool.play(this.soundDie, (float)0.5, (float)0.5, 1, 0, 1f);
-        }
     }
 
     public void reset(){
