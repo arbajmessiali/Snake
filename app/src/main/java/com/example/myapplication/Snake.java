@@ -304,9 +304,6 @@ public class Snake {
     }
 
     public void addPart(){
-        GameView.score=++GameView.score;
-        Log.i("eat","frog eaten"+GameView.score);
-        MainActivity.txt_score.setText(""+GameView.score);
         PartSnake p = this.arrPartSnake.get(length - 1);
         this.length+=1;
         if(p.getBm() == bm_tail_right){
