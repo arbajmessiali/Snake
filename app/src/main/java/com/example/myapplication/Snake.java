@@ -2,9 +2,7 @@ package com.example.myapplication;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.util.Log;
-import android.view.View;
 
 import java.util.ArrayList;
 

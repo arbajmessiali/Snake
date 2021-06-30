@@ -6,20 +6,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.SoundPool;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import android.os.Handler;
-
 import java.util.Random;
-import java.util.logging.LogRecord;
 
 public class GameView extends View {
     private Bitmap bmGrass1, bmGrass2, bmSnake, bmPrey;
