@@ -55,10 +55,10 @@ public class GameView extends View {
             for (int j = 0; j < w; j++) {
                 if ((i + j) % 2 == 0) {
                     arrGrass.add(new Grass(bmGrass1, j * sizeOfMap + Constants.SCREEN_WIDTH / 2 - (w / 2) * sizeOfMap,
-                            i * sizeOfMap + 100 * Constants.SCREEN_HEIGHT / 1920, sizeOfMap, sizeOfMap));
+                            i * sizeOfMap + 75 * Constants.SCREEN_HEIGHT / 1920, sizeOfMap, sizeOfMap));
                 } else {
                     arrGrass.add(new Grass(bmGrass2, j * sizeOfMap + Constants.SCREEN_WIDTH / 2 - (w / 2) * sizeOfMap,
-                            i * sizeOfMap + 100 * Constants.SCREEN_HEIGHT / 1920, sizeOfMap, sizeOfMap));
+                            i * sizeOfMap + 75 * Constants.SCREEN_HEIGHT / 1920, sizeOfMap, sizeOfMap));
                 }
             }
         }
@@ -84,25 +84,25 @@ public class GameView extends View {
                     my=event.getY();
                     move = true;
                 }else{
-                    if(mx - event.getX()>100*Constants.SCREEN_WIDTH/1080 && !snake.isMove_right()){
+                    if(mx - event.getX()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_right()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_left(true);
                         isPlaying = true;
                         MainActivity.img_swipe.setVisibility(INVISIBLE);
-                    }else if(event.getX()-mx>100*Constants.SCREEN_WIDTH/1080 && !snake.isMove_left()){
+                    }else if(event.getX()-mx>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_left()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_right(true);
                         isPlaying = true;
                         MainActivity.img_swipe.setVisibility(INVISIBLE);
-                    }else if(my - event.getY()>100*Constants.SCREEN_WIDTH/1080 && !snake.isMove_bottom()){
+                    }else if(my - event.getY()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_bottom()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_top(true);
                         isPlaying = true;
                         MainActivity.img_swipe.setVisibility(INVISIBLE);
-                    }else if(event.getY()-my>100*Constants.SCREEN_WIDTH/1080 && !snake.isMove_top()){
+                    }else if(event.getY()-my>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_top()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_bottom(true);
