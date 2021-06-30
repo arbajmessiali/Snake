@@ -2,8 +2,6 @@ package com.example.myapplication;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Snake {
