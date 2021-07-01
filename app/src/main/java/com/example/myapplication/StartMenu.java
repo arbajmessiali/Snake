@@ -24,6 +24,7 @@ public class StartMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openMainActivity();
+                StartMenu.this.finish();
             }
         });
 

@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
         rl_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openStartActivity();
                 dialogScore.dismiss();
+                openStartActivity();
+                MainActivity.this.finish();
             }
         });
         dialogScore.show();
