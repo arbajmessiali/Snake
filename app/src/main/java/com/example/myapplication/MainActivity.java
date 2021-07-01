@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -57,6 +58,20 @@ public class MainActivity extends AppCompatActivity {
                 dialogScore.dismiss();
             }
         });
+
+        RelativeLayout rl_exit = dialogScore.findViewById(R.id.rl_exit);
+        rl_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openStartActivity();
+                dialogScore.dismiss();
+            }
+        });
         dialogScore.show();
+    }
+
+    public void openStartActivity(){
+        Intent intent = new Intent(this, StartMenu.class);
+        startActivity(intent);
     }
 }
