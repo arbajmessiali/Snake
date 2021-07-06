@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class StartMenu extends AppCompatActivity {
-    private Button button;
+    private Button button, button1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +20,19 @@ public class StartMenu extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         button = (Button) findViewById(R.id.startbtn);
+        button1 = (Button) findViewById(R.id.mode);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMainActivity();
+                StartMenu.this.finish();
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMode();
                 StartMenu.this.finish();
             }
         });
@@ -40,6 +49,11 @@ public class StartMenu extends AppCompatActivity {
 
     public void openMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMode(){
+        Intent intent = new Intent(this, EasyMode.class);
         startActivity(intent);
     }
 
