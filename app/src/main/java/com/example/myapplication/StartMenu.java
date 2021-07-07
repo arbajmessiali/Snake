@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class StartMenu extends AppCompatActivity {
-    private Button button, button1;
+    private Button button, button1, exit_button, button_left, button_right;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,13 @@ public class StartMenu extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         button = (Button) findViewById(R.id.startbtn);
-        button1 = (Button) findViewById(R.id.mode);
+        button1 = (Button) findViewById(R.id.startbtn2);
+        button_left = (Button) findViewById(R.id.left_button);
+        button_right = (Button) findViewById(R.id.right_button);
+        exit_button = (Button) findViewById(R.id.exitbtn);
+
+        button1.setVisibility(View.INVISIBLE);
+        button_left.setVisibility(View.INVISIBLE);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,14 +39,32 @@ public class StartMenu extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMode();
+                openEasyMode();
                 StartMenu.this.finish();
             }
         });
 
-        Button btn1 = (Button) findViewById(R.id.exitbtn);
-        btn1.setOnClickListener(new View.OnClickListener() {
+        button_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.setVisibility(View.INVISIBLE);
+                button1.setVisibility(View.VISIBLE);
+                button_left.setVisibility(View.VISIBLE);
+                button_right.setVisibility(View.INVISIBLE);
+            }
+        });
 
+        button_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button1.setVisibility(View.INVISIBLE);
+                button.setVisibility(View.VISIBLE);
+                button_right.setVisibility(View.VISIBLE);
+                button_left.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        exit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -53,7 +77,7 @@ public class StartMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openMode(){
+    public void openEasyMode(){
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
     }
