@@ -23,7 +23,7 @@ public class easyMode extends View {
     private boolean move=false;
     private float mx,my;
     public static boolean isPlaying = false;
-    public static int score = 0, bestScore = 0;
+    public static int score2 = 0, bestScore2 = 0;
     private Context context;
     private Handler handler;
     private Runnable r;
@@ -34,7 +34,7 @@ public class easyMode extends View {
         this.context = context;
         SharedPreferences sp = context.getSharedPreferences("gamesetting", Context.MODE_PRIVATE);
         if(sp!=null){
-            bestScore = sp.getInt("bestscore",0);
+            bestScore2 = sp.getInt("bestscore2",0);
         }
         bmGrass1 = BitmapFactory.decodeResource(this.getResources(), R.drawable.textile);
         bmGrass1 = Bitmap.createScaledBitmap(bmGrass1, sizeOfMap, sizeOfMap, true);
@@ -141,15 +141,15 @@ public class easyMode extends View {
         if(snake.getArrPartSnake().get(0).getrBody().intersect(prey.getR())){
             prey.reset(arrGrass.get(randomPrey()[0]).getX(), arrGrass.get(randomPrey()[1]).getY());
             snake.addPart();
-            score++;
-            MainActivity.txt_score.setText(score+"");
-            if(score > bestScore){
-                bestScore = score;
-                SharedPreferences sp = context.getSharedPreferences("gamesetting", Context.MODE_PRIVATE);
+            score2++;
+            MainActivity2.txt_score2.setText(score2+"");
+            if(score2 > bestScore2){
+                bestScore2 = score2;
+                SharedPreferences sp = context.getSharedPreferences("gamesetting2", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putInt("bestscore", bestScore);
+                editor.putInt("bestscore2", bestScore2);
                 editor.apply();
-                MainActivity.txt_best_score.setText(bestScore+"");
+                MainActivity2.txt_best_score2.setText(bestScore2+"");
             }
         }
         handler.postDelayed(r, 100);
@@ -157,9 +157,9 @@ public class easyMode extends View {
 
     private void gameOver() {
         isPlaying = false;
-        MainActivity.dialogScore.show();
-        MainActivity.txt_dialog_best_score.setText(bestScore+"");
-        MainActivity.txt_dialog_score.setText(score+"");
+        MainActivity2.dialogScore2.show();
+        MainActivity2.txt_dialog_best_score2.setText(bestScore2+"");
+        MainActivity2.txt_dialog_score2.setText(score2+"");
     }
 
     public void reset(){
@@ -174,7 +174,7 @@ public class easyMode extends View {
         }
         snake = new Snake(bmSnake, arrGrass.get(126).getX(),arrGrass.get(126).getY(), 4);
         prey = new Prey(bmPrey, arrGrass.get(randomPrey()[0]).getX(), arrGrass.get(randomPrey()[1]).getY());
-        GameView.score = 0;
+        easyMode.score2 = 0;
     }
 
     public int[] randomPrey(){

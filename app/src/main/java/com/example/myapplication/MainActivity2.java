@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
     public static ImageView img_swipe;
-    public static Dialog dialogScore;
+    public static Dialog dialogScore2;
     private easyMode easyMode;
-    public static TextView txt_score, txt_best_score, txt_dialog_score, txt_dialog_best_score;
+    public static TextView txt_score2, txt_best_score2, txt_dialog_score2, txt_dialog_best_score2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,47 +28,47 @@ public class MainActivity2 extends AppCompatActivity {
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
-        setContentView(R.layout.activity_main);
-        img_swipe = findViewById(R.id.img_swipe);
+        setContentView(R.layout.easy_mode);
+        img_swipe = findViewById(R.id.img_swipe2);
         easyMode = findViewById(R.id.easy_mode);
-        txt_score = findViewById(R.id.txt_score);
-        txt_best_score = findViewById(R.id.txt_best_score);
-        dialogScore();
+        txt_score2 = findViewById(R.id.txt_score2);
+        txt_best_score2 = findViewById(R.id.txt_best_score2);
+        dialogScore2();
     }
 
-    private void dialogScore() {
-        int bestScore = 0;
-        SharedPreferences sp = this.getSharedPreferences("gamesetting", Context.MODE_PRIVATE);
+    private void dialogScore2() {
+        int bestScore2 = 0;
+        SharedPreferences sp = this.getSharedPreferences("gamesetting2", Context.MODE_PRIVATE);
         if(sp!=null){
-            bestScore = sp.getInt("bestscore",0);
+            bestScore2 = sp.getInt("bestscore2",0);
         }
-        MainActivity2.txt_best_score.setText(bestScore+"");
-        dialogScore = new Dialog(this);
-        dialogScore.setContentView(R.layout.dialog_start);
-        txt_dialog_score = dialogScore.findViewById(R.id.txt_dialog_score);
-        txt_dialog_best_score = dialogScore.findViewById(R.id.txt_dialog_best_score);
-        txt_dialog_best_score.setText(bestScore + "");
-        dialogScore.setCanceledOnTouchOutside(false);
-        RelativeLayout rl_start = dialogScore.findViewById(R.id.rl_start);
+        MainActivity2.txt_best_score2.setText(bestScore2+"");
+        dialogScore2 = new Dialog(this);
+        dialogScore2.setContentView(R.layout.dialog_start2);
+        txt_dialog_score2 = dialogScore2.findViewById(R.id.txt_dialog_score2);
+        txt_dialog_best_score2 = dialogScore2.findViewById(R.id.txt_dialog_best_score2);
+        txt_dialog_best_score2.setText(bestScore2 + "");
+        dialogScore2.setCanceledOnTouchOutside(false);
+        RelativeLayout rl_start = dialogScore2.findViewById(R.id.rl_start);
         rl_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 img_swipe.setVisibility(View.VISIBLE);
                 easyMode.reset();
-                dialogScore.dismiss();
+                dialogScore2.dismiss();
             }
         });
 
-        RelativeLayout rl_exit = dialogScore.findViewById(R.id.rl_exit);
+        RelativeLayout rl_exit = dialogScore2.findViewById(R.id.rl_exit);
         rl_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogScore.dismiss();
+                dialogScore2.dismiss();
                 openStartActivity();
                 MainActivity2.this.finish();
             }
         });
-        dialogScore.show();
+        dialogScore2.show();
     }
 
     public void openStartActivity(){
