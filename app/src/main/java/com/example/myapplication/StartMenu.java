@@ -21,6 +21,7 @@ public class StartMenu extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.startbtn);
         button1 = (Button) findViewById(R.id.mode);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +54,7 @@ public class StartMenu extends AppCompatActivity {
     }
 
     public void openMode(){
-        Intent intent = new Intent(this, EasyMode.class);
+        Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
     }
 

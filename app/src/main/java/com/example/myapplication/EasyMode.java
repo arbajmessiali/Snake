@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import android.os.Handler;
 import java.util.Random;
 
-public class EasyMode extends View {
+public class easyMode extends View {
     private Bitmap bmGrass1, bmGrass2, bmSnake, bmPrey;
     public static int sizeOfMap = 75*Constants.SCREEN_WIDTH/1080;
     private int h=21, w=12;
@@ -29,7 +29,7 @@ public class EasyMode extends View {
     private Runnable r;
     private Prey prey;
 
-    public EasyMode(Context context, @Nullable AttributeSet attrs) {
+    public easyMode(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         SharedPreferences sp = context.getSharedPreferences("gamesetting", Context.MODE_PRIVATE);
@@ -77,30 +77,30 @@ public class EasyMode extends View {
                     my=event.getY();
                     move = true;
                 }else{
-                    if(mx - event.getX()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_left()){
-                        mx=event.getX();
-                        my=event.getY();
-                        this.snake.setMove_right(true);
-                        isPlaying = true;
-                        MainActivity2.img_swipe.setVisibility(INVISIBLE);
-                    }else if(event.getX()-mx>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_right()){
+                    if(mx - event.getX()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_right()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_left(true);
                         isPlaying = true;
-                        MainActivity2.img_swipe.setVisibility(INVISIBLE);
-                    }else if(my - event.getY()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_top()){
+                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                    }else if(event.getX()-mx>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_left()){
                         mx=event.getX();
                         my=event.getY();
-                        this.snake.setMove_bottom(true);
+                        this.snake.setMove_right(true);
                         isPlaying = true;
-                        MainActivity2.img_swipe.setVisibility(INVISIBLE);
-                    }else if(event.getY()-my>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_bottom()){
+                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                    }else if(my - event.getY()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_bottom()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_top(true);
                         isPlaying = true;
-                        MainActivity2.img_swipe.setVisibility(INVISIBLE);
+                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                    }else if(event.getY()-my>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_top()){
+                        mx=event.getX();
+                        my=event.getY();
+                        this.snake.setMove_bottom(true);
+                        isPlaying = true;
+                        MainActivity.img_swipe.setVisibility(INVISIBLE);
                     }
                 }
                 break;
@@ -142,14 +142,14 @@ public class EasyMode extends View {
             prey.reset(arrGrass.get(randomPrey()[0]).getX(), arrGrass.get(randomPrey()[1]).getY());
             snake.addPart();
             score++;
-            MainActivity2.txt_score.setText(score+"");
+            MainActivity.txt_score.setText(score+"");
             if(score > bestScore){
                 bestScore = score;
                 SharedPreferences sp = context.getSharedPreferences("gamesetting", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putInt("bestscore", bestScore);
                 editor.apply();
-                MainActivity2.txt_best_score.setText(bestScore+"");
+                MainActivity.txt_best_score.setText(bestScore+"");
             }
         }
         handler.postDelayed(r, 100);
@@ -157,9 +157,9 @@ public class EasyMode extends View {
 
     private void gameOver() {
         isPlaying = false;
-        MainActivity2.dialogScore.show();
-        MainActivity2.txt_dialog_best_score.setText(bestScore+"");
-        MainActivity2.txt_dialog_score.setText(score+"");
+        MainActivity.dialogScore.show();
+        MainActivity.txt_dialog_best_score.setText(bestScore+"");
+        MainActivity.txt_dialog_score.setText(score+"");
     }
 
     public void reset(){
@@ -174,7 +174,7 @@ public class EasyMode extends View {
         }
         snake = new Snake(bmSnake, arrGrass.get(126).getX(),arrGrass.get(126).getY(), 4);
         prey = new Prey(bmPrey, arrGrass.get(randomPrey()[0]).getX(), arrGrass.get(randomPrey()[1]).getY());
-        EasyMode.score = 0;
+        GameView.score = 0;
     }
 
     public int[] randomPrey(){

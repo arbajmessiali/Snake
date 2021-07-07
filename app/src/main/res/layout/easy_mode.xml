@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity2">
     <com.example.myapplication.EasyMode
         android:id="@+id/easy_mode"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                     android:scaleType="fitXY"
                     android:contentDescription="@string/description"/>
                 <TextView
-                    android:id="@+id/txt_score"
+                    android:id="@+id/txt_score2"
                     android:textColor="#ffffff"
                     android:textSize="30sp"
                     android:text=""
@@ -59,7 +59,7 @@
                     android:scaleType="fitXY"
                     android:contentDescription="@string/trophy"/>
                 <TextView
-                    android:id="@+id/txt_best_score"
+                    android:id="@+id/txt_best_score2"
                     android:textColor="#ffffff"
                     android:textSize="30sp"
                     android:layout_width="wrap_content"
