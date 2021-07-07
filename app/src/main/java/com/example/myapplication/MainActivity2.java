@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
-    public static ImageView img_swipe;
+    public static ImageView img_swipe2;
     public static Dialog dialogScore2;
     private easyMode easyMode;
     public static TextView txt_score2, txt_best_score2, txt_dialog_score2, txt_dialog_best_score2;
@@ -29,7 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
         setContentView(R.layout.easy_mode);
-        img_swipe = findViewById(R.id.img_swipe2);
+        img_swipe2 = findViewById(R.id.img_swipe2);
         easyMode = findViewById(R.id.easy_mode);
         txt_score2 = findViewById(R.id.txt_score2);
         txt_best_score2 = findViewById(R.id.txt_best_score2);
@@ -53,7 +53,7 @@ public class MainActivity2 extends AppCompatActivity {
         rl_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                img_swipe.setVisibility(View.VISIBLE);
+                img_swipe2.setVisibility(View.VISIBLE);
                 easyMode.reset();
                 dialogScore2.dismiss();
             }
