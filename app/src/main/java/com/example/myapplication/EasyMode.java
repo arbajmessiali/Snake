@@ -77,28 +77,28 @@ public class easyMode extends View {
                     my=event.getY();
                     move = true;
                 }else{
-                    if(mx - event.getX()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_right()){
-                        mx=event.getX();
-                        my=event.getY();
-                        this.snake.setMove_left(true);
-                        isPlaying = true;
-                        MainActivity.img_swipe.setVisibility(INVISIBLE);
-                    }else if(event.getX()-mx>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_left()){
+                    if(mx - event.getX()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_left()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_right(true);
                         isPlaying = true;
                         MainActivity.img_swipe.setVisibility(INVISIBLE);
-                    }else if(my - event.getY()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_bottom()){
+                    }else if(event.getX()-mx>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_right()){
                         mx=event.getX();
                         my=event.getY();
-                        this.snake.setMove_top(true);
+                        this.snake.setMove_left(true);
                         isPlaying = true;
                         MainActivity.img_swipe.setVisibility(INVISIBLE);
-                    }else if(event.getY()-my>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_top()){
+                    }else if(my - event.getY()>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_top()){
                         mx=event.getX();
                         my=event.getY();
                         this.snake.setMove_bottom(true);
+                        isPlaying = true;
+                        MainActivity.img_swipe.setVisibility(INVISIBLE);
+                    }else if(event.getY()-my>75*Constants.SCREEN_WIDTH/1080 && !snake.isMove_bottom()){
+                        mx=event.getX();
+                        my=event.getY();
+                        this.snake.setMove_top(true);
                         isPlaying = true;
                         MainActivity.img_swipe.setVisibility(INVISIBLE);
                     }
