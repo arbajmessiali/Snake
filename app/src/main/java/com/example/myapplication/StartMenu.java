@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class StartMenu extends AppCompatActivity {
     private Button button, button1, exit_button, button_left, button_right;
+    private TextView text1, text2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +26,13 @@ public class StartMenu extends AppCompatActivity {
         button_left = (Button) findViewById(R.id.left_button);
         button_right = (Button) findViewById(R.id.right_button);
         exit_button = (Button) findViewById(R.id.exitbtn);
+        text1 = (TextView) findViewById(R.id.textView3);
+        text2 = (TextView) findViewById(R.id.textView4);
 
         button1.setVisibility(View.INVISIBLE);
         button_left.setVisibility(View.INVISIBLE);
+        text1.setVisibility(View.INVISIBLE);
+        text2.setVisibility(View.INVISIBLE);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +57,8 @@ public class StartMenu extends AppCompatActivity {
                 button1.setVisibility(View.VISIBLE);
                 button_left.setVisibility(View.VISIBLE);
                 button_right.setVisibility(View.INVISIBLE);
+                text1.setVisibility(View.VISIBLE);
+                text2.setVisibility(View.VISIBLE);
             }
         });
 
