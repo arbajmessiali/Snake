@@ -15,7 +15,7 @@ import android.os.Handler;
 import java.util.Random;
 
 public class GameView extends View {
-    private Bitmap bmGrass1, bmGrass2, bmSnake, bmPrey;
+    private Bitmap bmGrass1, bmGrass2, bmSnake, bmPrey, bmBomb;
     public static int sizeOfMap = 75*Constants.SCREEN_WIDTH/1080;
     private int h=21, w=12;
     private ArrayList<Grass> arrGrass = new ArrayList<>();
@@ -24,10 +24,12 @@ public class GameView extends View {
     private float mx,my;
     public static boolean isPlaying = false;
     public static int score = 0, bestScore = 0;
+    public int speed=100;
     private Context context;
     private Handler handler;
     private Runnable r;
     private Prey prey;
+    private Bomb bomb;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -44,6 +46,8 @@ public class GameView extends View {
         bmSnake = Bitmap.createScaledBitmap(bmSnake, 14 * sizeOfMap, sizeOfMap, true);
         bmPrey = BitmapFactory.decodeResource(this.getResources(), R.drawable.prey);
         bmPrey = Bitmap.createScaledBitmap(bmPrey, sizeOfMap, sizeOfMap, true);
+        bmBomb = BitmapFactory.decodeResource(this.getResources(), R.drawable.bomb);
+        bmBomb = Bitmap.createScaledBitmap(bmBomb, sizeOfMap, sizeOfMap, true);
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
                 if ((i + j) % 2 == 0) {
@@ -57,6 +61,7 @@ public class GameView extends View {
         }
         snake = new Snake(bmSnake, arrGrass.get(126).getX(), arrGrass.get(126).getY(), 4);
         prey = new Prey(bmPrey, arrGrass.get(randomPrey()[0]).getX(), arrGrass.get(randomPrey()[1]).getY());
+        bomb = new Bomb(bmBomb, arrGrass.get(randomBomb()[0]).getX(), arrGrass.get(randomBomb()[1]).getY());
         handler = new Handler();
         r = new Runnable() {
             @Override
@@ -152,7 +157,14 @@ public class GameView extends View {
                 MainActivity.txt_best_score.setText(bestScore+"");
             }
         }
-        handler.postDelayed(r, 100);
+        if(score!=0 && score%3==0) {
+            speed-=1;
+            bomb.draw(canvas);
+            if(snake.getArrPartSnake().get(0).getrBody().intersect(bomb.getR())){
+                gameOver();
+            }
+        }
+        handler.postDelayed(r, speed);
     }
 
     private void gameOver() {
@@ -178,6 +190,27 @@ public class GameView extends View {
     }
 
     public int[] randomPrey(){
+        int []xy = new int[2];
+        Random r = new Random();
+        xy[0] = r.nextInt(arrGrass.size() - 1);
+        xy[1] = r.nextInt(arrGrass.size() - 1);
+        Rect rect = new Rect(arrGrass.get(xy[0]).getX(), arrGrass.get(xy[1]).getY(), arrGrass.get(xy[0]).getX()+sizeOfMap, arrGrass.get(xy[1]).getY()+sizeOfMap);
+        boolean check = true;
+        while(check){
+            check = false;
+            for (int i=0; i<snake.getArrPartSnake().size(); i++){
+                if(rect.intersect(snake.getArrPartSnake().get(i).getrBody())){
+                    check = true;
+                    xy[0] = r.nextInt(arrGrass.size()-1);
+                    xy[1] = r.nextInt(arrGrass.size()-1);
+                    rect = new Rect(arrGrass.get(xy[0]).getX(), arrGrass.get(xy[1]).getY(), arrGrass.get(xy[0]).getX()+sizeOfMap, arrGrass.get(xy[1]).getY()+sizeOfMap);
+                }
+            }
+        }
+        return xy;
+    }
+
+    public int[] randomBomb(){
         int []xy = new int[2];
         Random r = new Random();
         xy[0] = r.nextInt(arrGrass.size() - 1);
