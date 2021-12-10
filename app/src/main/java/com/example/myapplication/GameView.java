@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.Nullable;
@@ -24,7 +25,7 @@ public class GameView extends View {
     private float mx,my;
     public static boolean isPlaying = false;
     public static int score = 0, bestScore = 0;
-    public int speed=100;
+    public int speed=100, checkSpeed=0;
     private Context context;
     private Handler handler;
     private Runnable r;
@@ -147,6 +148,7 @@ public class GameView extends View {
             prey.reset(arrGrass.get(randomPrey()[0]).getX(), arrGrass.get(randomPrey()[1]).getY());
             snake.addPart();
             score++;
+            checkSpeed = 0;
             MainActivity.txt_score.setText(score+"");
             if(score > bestScore){
                 bestScore = score;
@@ -158,9 +160,13 @@ public class GameView extends View {
             }
         }
         if(score!=0 && score%3==0) {
-            speed-=1;
             bomb.draw(canvas);
-            if(snake.getArrPartSnake().get(0).getrBody().intersect(bomb.getR())){
+            if(checkSpeed==0) {
+                speed -= 1;
+                Log.i("speed", "speed="+speed);
+                checkSpeed=1;
+            }
+            if (snake.getArrPartSnake().get(0).getrBody().intersect(bomb.getR())) {
                 gameOver();
             }
         }

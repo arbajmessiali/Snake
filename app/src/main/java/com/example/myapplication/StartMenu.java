@@ -54,11 +54,11 @@ public class StartMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 button.setVisibility(View.INVISIBLE);
-                button1.setVisibility(View.VISIBLE);
-                button_left.setVisibility(View.VISIBLE);
+                button1.setVisibility(View.INVISIBLE);
+                button_left.setVisibility(View.INVISIBLE);
                 button_right.setVisibility(View.INVISIBLE);
-                text1.setVisibility(View.VISIBLE);
-                text2.setVisibility(View.VISIBLE);
+                text1.setVisibility(View.INVISIBLE);
+                text2.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -66,8 +66,8 @@ public class StartMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 button1.setVisibility(View.INVISIBLE);
-                button.setVisibility(View.VISIBLE);
-                button_right.setVisibility(View.VISIBLE);
+                button.setVisibility(View.INVISIBLE);
+                button_right.setVisibility(View.INVISIBLE);
                 button_left.setVisibility(View.INVISIBLE);
             }
         });
